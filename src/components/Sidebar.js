@@ -23,14 +23,15 @@ const Sidebar = () => {
 
   if (isToggle) {
     return (
-      <Box>
+      <Box position="fixed" zIndex={"docked"} backgroundColor="white" w="100%">
         <VStack>
           <Button
+            fontWeight={"thin"}
             p={8}
             bgColor={"white"}
             css={{
               "&:hover": {
-                backgroundColor: "#EDEADE",
+                backgroundColor: "#D3D3D3",
               },
             }}
           >
@@ -44,7 +45,7 @@ const Sidebar = () => {
             bgColor={"white"}
             css={{
               "&:hover": {
-                backgroundColor: "#EDEADE",
+                backgroundColor: "#D3D3D3",
               },
             }}
           >
@@ -60,7 +61,7 @@ const Sidebar = () => {
             bgColor={"white"}
             css={{
               "&:hover": {
-                backgroundColor: "#EDEADE",
+                backgroundColor: "#D3D3D3",
               },
             }}
           >
@@ -74,7 +75,17 @@ const Sidebar = () => {
     );
   }
   return (
-    <Box>
+    <Box
+      position="fixed"
+      zIndex={"100"}
+      backgroundColor="white"
+      w="100"
+      sx={{
+        position: "-webkit-sticky",
+        /* Safari */ position: "sticky",
+        top: "0",
+      }}
+    >
       <VStack>
         <Button
           mt={2}
@@ -82,7 +93,7 @@ const Sidebar = () => {
           bgColor={"white"}
           css={{
             "&:hover": {
-              backgroundColor: "#EDEADE",
+              backgroundColor: "#D3D3D3",
             },
           }}
         >
@@ -94,7 +105,7 @@ const Sidebar = () => {
           bgColor={"white"}
           css={{
             "&:hover": {
-              backgroundColor: "#EDEADE",
+              backgroundColor: "#D3D3D3",
             },
           }}
         >
@@ -111,7 +122,7 @@ const Sidebar = () => {
           bgColor={"white"}
           css={{
             "&:hover": {
-              backgroundColor: "#EDEADE",
+              backgroundColor: "#D3D3D3",
             },
           }}
         >
@@ -129,7 +140,7 @@ const Sidebar = () => {
           bgColor={"white"}
           css={{
             "&:hover": {
-              backgroundColor: "#EDEADE",
+              backgroundColor: "#D3D3D3",
             },
           }}
         >
@@ -146,7 +157,7 @@ const Sidebar = () => {
           bgColor={"white"}
           css={{
             "&:hover": {
-              backgroundColor: "#EDEADE",
+              backgroundColor: "#D3D3D3",
             },
           }}
         >
@@ -161,7 +172,7 @@ const Sidebar = () => {
           bgColor={"white"}
           css={{
             "&:hover": {
-              backgroundColor: "#EDEADE",
+              backgroundColor: "#D3D3D3",
             },
           }}
         >
@@ -173,7 +184,7 @@ const Sidebar = () => {
           bgColor={"white"}
           css={{
             "&:hover": {
-              backgroundColor: "#EDEADE",
+              backgroundColor: "#D3D3D3",
             },
           }}
         >
@@ -188,7 +199,7 @@ const Sidebar = () => {
           bgColor={"white"}
           css={{
             "&:hover": {
-              backgroundColor: "#EDEADE",
+              backgroundColor: "#D3D3D3",
             },
           }}
         >
@@ -200,7 +211,7 @@ const Sidebar = () => {
           bgColor={"white"}
           css={{
             "&:hover": {
-              backgroundColor: "#EDEADE",
+              backgroundColor: "#D3D3D3",
             },
           }}
         >
@@ -212,7 +223,7 @@ const Sidebar = () => {
           bgColor={"white"}
           css={{
             "&:hover": {
-              backgroundColor: "#EDEADE",
+              backgroundColor: "#D3D3D3",
             },
           }}
         >

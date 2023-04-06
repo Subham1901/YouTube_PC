@@ -1,10 +1,10 @@
 import { Box, Button, list } from "@chakra-ui/react";
 import React from "react";
-import { lists } from "../utils/ButtonLists";
+import { lists } from "../utils/Constants";
 
 const ButtonList = () => {
   return (
-    <Box ml={6}>
+    <Box display={"flex"} ml={6}>
       {lists.map((data, idx) => (
         <Button
           css={{

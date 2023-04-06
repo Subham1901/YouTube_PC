@@ -20,6 +20,16 @@ const Header = () => {
   const dispatch = useDispatch();
   return (
     <Box
+      as="header"
+      position="fixed"
+      zIndex={"docked"}
+      backgroundColor="white"
+      w="100%"
+      sx={{
+        position: "-webkit-sticky",
+        /* Safari */ position: "sticky",
+        top: "0",
+      }}
       display={"flex"}
       alignItems={"center"}
       justifyContent={"space-between"}
@@ -30,7 +40,7 @@ const Header = () => {
           borderRadius={"full"}
           css={{
             "&:hover": {
-              backgroundColor: "#EDEADE",
+              backgroundColor: "#D3D3D3",
             },
           }}
           width={12}

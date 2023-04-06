@@ -2,6 +2,7 @@ import { Box, HStack, Heading, Stack, VStack } from "@chakra-ui/react";
 import React from "react";
 import Sidebar from "./Sidebar";
 import ButtonList from "./ButtonList";
+import VideoList from "./VideoList";
 
 const Body = () => {
   return (
@@ -9,6 +10,9 @@ const Body = () => {
       <Sidebar />
       <VStack>
         <ButtonList />
+        <Box>
+          <VideoList />
+        </Box>
       </VStack>
     </Stack>
   );
