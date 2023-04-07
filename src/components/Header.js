@@ -15,14 +15,16 @@ import { AiOutlineSearch } from "react-icons/ai";
 import Logo from "../assets/YouTube-Logo.png";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
+
   return (
     <Box
       as="header"
       position="fixed"
-      zIndex={"docked"}
+      zIndex={"dropdown"}
       backgroundColor="white"
       w="100%"
       sx={{
@@ -51,7 +53,16 @@ const Header = () => {
         >
           <MdMenu size={25} />
         </Button>
-        <Img ml={6} objectFit={"cover"} w={100} alt="YouTube" src={Logo} />
+
+        <Img
+          cursor={"pointer"}
+          ml={6}
+          objectFit={"cover"}
+          w={100}
+          alt="YouTube"
+          src={Logo}
+        />
+
         <form>
           <InputGroup ml={"96"}>
             <Input w={"md"} borderLeftRadius={"full"} placeholder="Search" />

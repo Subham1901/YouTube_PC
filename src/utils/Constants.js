@@ -11,9 +11,10 @@ export const lists = [
   "Stock",
   "Web Development",
   "Nifty Bank",
-  "Unboxing",
 ];
 
 const key = "AIzaSyBrZ8OaRNaZHPxwK1NMmQGeI9tjeLwa15I";
 export const API =
-  "https://youtube.googleapis.com/youtube/v3/videos?&maxResults=50&part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&key=AIzaSyBrZ8OaRNaZHPxwK1NMmQGeI9tjeLwa15I";
+  "https://youtube.googleapis.com/youtube/v3/videos?&maxResults=50&part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=IN&key=AIzaSyBrZ8OaRNaZHPxwK1NMmQGeI9tjeLwa15I";
+export const commentAPI =
+  "https://www.googleapis.com/youtube/v3/commentThreads?key=AIzaSyBrZ8OaRNaZHPxwK1NMmQGeI9tjeLwa15I&textFormat=plainText&part=snippet&videoId=Mhkb8EbZaf0&maxResults=100";

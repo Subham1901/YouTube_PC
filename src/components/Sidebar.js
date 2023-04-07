@@ -18,16 +18,90 @@ import { BsTrophy } from "react-icons/bs";
 import { GoLightBulb } from "react-icons/go";
 import short from "../assets/short.png";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 const Sidebar = () => {
-  const isToggle = useSelector((data) => data.app.isMenuToggled);
+  const { isMenuToggled } = useSelector((data) => data.app);
 
-  if (isToggle) {
-    return (
-      <Box position="fixed" zIndex={"docked"} backgroundColor="white" w="100%">
-        <VStack>
+  if (!isMenuToggled) {
+    return;
+  }
+
+  // if (
+  //   isToggle.origin === "header" &&
+  //   isToggle.isMenuToggled &&
+  //   isToggle.origin !== "watch"
+  // ) {
+  //   return (
+  //     <Box>
+  //       <VStack>
+  //         <Link to={"/"}>
+  //           <Button
+  //             fontWeight={"thin"}
+  //             p={8}
+  //             bgColor={"white"}
+  //             css={{
+  //               "&:hover": {
+  //                 backgroundColor: "#D3D3D3",
+  //               },
+  //             }}
+  //           >
+  //             <MdHomeFilled
+  //               size={25}
+  //               style={{ position: "absolute", left: 11 }}
+  //             />
+  //           </Button>
+  //         </Link>
+  //         <Button
+  //           p={8}
+  //           bgColor={"white"}
+  //           css={{
+  //             "&:hover": {
+  //               backgroundColor: "#D3D3D3",
+  //             },
+  //           }}
+  //         >
+  //           <Img
+  //             style={{ position: "absolute", left: 15 }}
+  //             objectFit={"cover"}
+  //             h={5}
+  //             src={short}
+  //           />
+  //         </Button>
+  //         <Button
+  //           p={8}
+  //           bgColor={"white"}
+  //           css={{
+  //             "&:hover": {
+  //               backgroundColor: "#D3D3D3",
+  //             },
+  //           }}
+  //         >
+  //           <MdOutlineSubscriptions
+  //             size={25}
+  //             style={{ position: "absolute", left: 10 }}
+  //           />{" "}
+  //         </Button>
+  //       </VStack>
+  //     </Box>
+  //   );
+  // }
+  return (
+    <Box
+      position="fixed"
+      backgroundColor="white"
+      h="100"
+      zIndex={"docked"}
+      sx={{
+        position: "-webkit-sticky",
+        /* Safari */ position: "sticky",
+        top: "0",
+      }}
+    >
+      <VStack>
+        <Link to={"/"}>
           <Button
-            fontWeight={"thin"}
-            p={8}
+            mt={2}
+            w={200}
             bgColor={"white"}
             css={{
               "&:hover": {
@@ -38,68 +112,10 @@ const Sidebar = () => {
             <MdHomeFilled
               size={25}
               style={{ position: "absolute", left: 11 }}
-            />
-          </Button>
-          <Button
-            p={8}
-            bgColor={"white"}
-            css={{
-              "&:hover": {
-                backgroundColor: "#D3D3D3",
-              },
-            }}
-          >
-            <Img
-              style={{ position: "absolute", left: 15 }}
-              objectFit={"cover"}
-              h={5}
-              src={short}
-            />
-          </Button>
-          <Button
-            p={8}
-            bgColor={"white"}
-            css={{
-              "&:hover": {
-                backgroundColor: "#D3D3D3",
-              },
-            }}
-          >
-            <MdOutlineSubscriptions
-              size={25}
-              style={{ position: "absolute", left: 10 }}
             />{" "}
+            Home
           </Button>
-        </VStack>
-      </Box>
-    );
-  }
-  return (
-    <Box
-      position="fixed"
-      zIndex={"100"}
-      backgroundColor="white"
-      w="100"
-      sx={{
-        position: "-webkit-sticky",
-        /* Safari */ position: "sticky",
-        top: "0",
-      }}
-    >
-      <VStack>
-        <Button
-          mt={2}
-          w={200}
-          bgColor={"white"}
-          css={{
-            "&:hover": {
-              backgroundColor: "#D3D3D3",
-            },
-          }}
-        >
-          <MdHomeFilled size={25} style={{ position: "absolute", left: 11 }} />{" "}
-          Home
-        </Button>
+        </Link>
         <Button
           w={200}
           bgColor={"white"}

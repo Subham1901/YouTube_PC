@@ -13,6 +13,7 @@ import {
 import moment from "moment/moment";
 import millify from "millify";
 import { GoPrimitiveDot } from "react-icons/go";
+import { Link } from "react-router-dom";
 const VideoList = () => {
   const [videos, setVideos] = useState([]);
 
@@ -35,60 +36,63 @@ const VideoList = () => {
   }
 
   return (
-    <Box display={"flex"} flexWrap={"wrap"} flexDirection={"row"}>
+    <Box
+      mt={8}
+      display={"flex"}
+      justifyContent={"center"}
+      flexWrap={"wrap"}
+      flexDirection={"row"}
+    >
       {videoInfo &&
         videoInfo.map((data) => (
-          <Card
-            cursor={"pointer"}
-            key={data?.id}
-            shadow={"none"}
-            maxW={300}
-            m={2}
-          >
-            <CardBody>
-              <Img
-                transition={"all 0.4s"}
-                css={{
-                  "&:hover": {
-                    borderRadius: "0%",
-                  },
-                }}
-                borderRadius={"lg"}
-                src={data?.snippet?.thumbnails?.medium?.url}
-                objectFit={"cover"}
-              />
-              <Heading mt={2} fontSize={"md"} fontWeight={"bold"}>
-                {data?.snippet?.title}
-              </Heading>
-              <Text
-                mt={1}
-                color={"gray.600"}
-                fontWeight={"semibold"}
-                fontSize={"sm"}
-              >
-                {data?.snippet?.channelTitle}
-              </Text>
-              <Box display={"flex"} alignItems={"center"}>
+          <Link key={data?.id} to={`/watch?v=${data?.id}`}>
+            <Card cursor={"pointer"} shadow={"none"} maxW={300} m={2}>
+              <CardBody>
+                <Img
+                  transition={"all 0.4s"}
+                  css={{
+                    "&:hover": {
+                      borderRadius: "0%",
+                    },
+                  }}
+                  borderRadius={"lg"}
+                  src={data?.snippet?.thumbnails?.medium?.url}
+                  objectFit={"cover"}
+                />
+
+                <Heading mt={2} fontSize={"md"} fontWeight={"bold"}>
+                  {data?.snippet?.title}
+                </Heading>
                 <Text
-                  mr={2}
-                  fontSize={14}
-                  color={"#818589"}
+                  mt={1}
+                  color={"gray.600"}
                   fontWeight={"semibold"}
+                  fontSize={"sm"}
                 >
-                  {moment(data?.publishedAt, "YYYYMMDD").fromNow()}
+                  {data?.snippet?.channelTitle}
                 </Text>
-                <GoPrimitiveDot size={8} />
-                <Text
-                  ml={2}
-                  fontSize={14}
-                  color={"#818589"}
-                  fontWeight={"semibold"}
-                >
-                  {millify(data?.statistics?.viewCount)} views
-                </Text>
-              </Box>
-            </CardBody>
-          </Card>
+                <Box display={"flex"} alignItems={"center"}>
+                  <Text
+                    mr={2}
+                    fontSize={14}
+                    color={"#818589"}
+                    fontWeight={"semibold"}
+                  >
+                    {moment(data?.publishedAt, "YYYYMMDD").fromNow()}
+                  </Text>
+                  <GoPrimitiveDot size={8} />
+                  <Text
+                    ml={2}
+                    fontSize={14}
+                    color={"#818589"}
+                    fontWeight={"semibold"}
+                  >
+                    {millify(data?.statistics?.viewCount)} views
+                  </Text>
+                </Box>
+              </CardBody>
+            </Card>
+          </Link>
         ))}
     </Box>
   );

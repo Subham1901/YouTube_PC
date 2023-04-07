@@ -4,7 +4,7 @@ import { lists } from "../utils/Constants";
 
 const ButtonList = () => {
   return (
-    <Box display={"flex"} ml={6}>
+    <Box display={"flex"}>
       {lists.map((data, idx) => (
         <Button
           css={{

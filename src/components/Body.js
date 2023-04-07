@@ -3,17 +3,14 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import ButtonList from "./ButtonList";
 import VideoList from "./VideoList";
+import MainContainer from "./MainContainer";
+import { Outlet } from "react-router-dom";
 
 const Body = () => {
   return (
     <Stack display={"flex"} flexDirection={"row"}>
       <Sidebar />
-      <VStack>
-        <ButtonList />
-        <Box>
-          <VideoList />
-        </Box>
-      </VStack>
+      <Outlet />
     </Stack>
   );
 };
