@@ -3,22 +3,53 @@ import {
   Box,
   Button,
   Container,
+  HStack,
   Img,
   Input,
   InputGroup,
   InputRightAddon,
   Stack,
+  Text,
+  VStack,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MdMenu } from "react-icons/md";
 import { AiOutlineSearch } from "react-icons/ai";
 import Logo from "../assets/YouTube-Logo.png";
 import { useDispatch } from "react-redux";
-import { toggleMenu } from "../utils/appSlice";
-import { Link, useNavigate } from "react-router-dom";
+import {
+  clearSeachSuggestion,
+  setSeachSuggestion,
+  toggleMenu,
+} from "../utils/appSlice";
+import axios from "axios";
+import SearchBox from "./SearchBox";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const [searchQuery, setSearchQuery] = useState();
+  const [showSuggestion, setShowSuggestion] = useState(false);
+
+  useEffect(() => {
+    let timer;
+    if (searchQuery) {
+      timer = setTimeout(() => getSuggestions(), 300);
+    }
+
+    return () => {
+      dispatch(clearSeachSuggestion());
+      clearTimeout(timer);
+    };
+  }, [searchQuery]);
+
+  // console.log(searchQuery);
+
+  const getSuggestions = async () => {
+    const { data } = await axios.get(
+      `http://suggestqueries.google.com/complete/search?client=firefox&key=AIzaSyBrZ8OaRNaZHPxwK1NMmQGeI9tjeLwa15I&ds=yt&q=${searchQuery}`
+    );
+    dispatch(setSeachSuggestion(data[1]));
+  };
 
   return (
     <Box
@@ -62,19 +93,30 @@ const Header = () => {
           alt="YouTube"
           src={Logo}
         />
-
-        <form>
-          <InputGroup ml={"96"}>
-            <Input w={"md"} borderLeftRadius={"full"} placeholder="Search" />
-            <Button
-              type="submit"
-              cursor={"pointer"}
-              onClick={() => console.log("hello")}
-              borderRightRadius={"full"}
-              children={<AiOutlineSearch size={25} />}
-            />
-          </InputGroup>
-        </form>
+        <VStack>
+          <form>
+            <InputGroup ml={"96"}>
+              <Input
+                onFocus={(e) => setShowSuggestion(true)}
+                onBlur={(e) => setShowSuggestion(false)}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                defaultValue={searchQuery}
+                name="search"
+                w={"md"}
+                borderLeftRadius={"full"}
+                placeholder="Search"
+              />
+              <Button
+                type="submit"
+                cursor={"pointer"}
+                onClick={() => console.log("hello")}
+                borderRightRadius={"full"}
+                children={<AiOutlineSearch size={25} />}
+              />
+            </InputGroup>
+          </form>
+          {<SearchBox show={showSuggestion} />}
+        </VStack>
       </Box>
 
       <Box>

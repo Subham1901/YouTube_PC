@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const appSlice = createSlice({
   name: "app",
   initialState: {
+    searchData: [],
     isMenuToggled: true,
     videoInfo: {},
   },
@@ -16,9 +17,20 @@ const appSlice = createSlice({
     watchVideoInfo: (state, action) => {
       state.videoInfo = action.payload;
     },
+    setSeachSuggestion: (state, action) => {
+      state.searchData = action.payload;
+    },
+    clearSeachSuggestion: (state) => {
+      state.searchData = [];
+    },
   },
 });
 
 export default appSlice.reducer;
 
-export const { toggleMenu, closeToggleMenu } = appSlice.actions;
+export const {
+  toggleMenu,
+  closeToggleMenu,
+  setSeachSuggestion,
+  clearSeachSuggestion,
+} = appSlice.actions;
