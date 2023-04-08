@@ -10,7 +10,6 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { useSelector } from "react-redux";
 
 const SearchBox = ({ show }) => {
-  console.log(showq);
   const searchData = useSelector((data) => data.app.searchData);
   return (
     <>
