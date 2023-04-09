@@ -13,7 +13,7 @@ export const lists = [
   "Nifty Bank",
 ];
 
-const key = "AIzaSyBrZ8OaRNaZHPxwK1NMmQGeI9tjeLwa15I";
+export const API_KEY = "AIzaSyBrZ8OaRNaZHPxwK1NMmQGeI9tjeLwa15I";
 export const API =
   "https://youtube.googleapis.com/youtube/v3/videos?&maxResults=50&part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=IN&key=AIzaSyBrZ8OaRNaZHPxwK1NMmQGeI9tjeLwa15I";
 export const commentAPI =
@@ -21,3 +21,6 @@ export const commentAPI =
 
 export const searchAPI =
   "http://suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=iphone";
+
+export const seacrhKeywordAPI =
+  "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=30&type=video";

@@ -46,9 +46,10 @@ const VideoList = () => {
       {videoInfo &&
         videoInfo.map((data) => (
           <Link key={data?.id} to={`/watch?v=${data?.id}`}>
-            <Card cursor={"pointer"} shadow={"none"} maxW={300} m={2}>
+            <Card cursor={"pointer"} shadow={"none"} maxW={400} m={2}>
               <CardBody>
                 <Img
+                  w={400}
                   transition={"all 0.4s"}
                   css={{
                     "&:hover": {

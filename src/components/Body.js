@@ -5,13 +5,18 @@ import ButtonList from "./ButtonList";
 import VideoList from "./VideoList";
 import MainContainer from "./MainContainer";
 import { Outlet } from "react-router-dom";
+import Header from "./Header";
 
 const Body = () => {
   return (
-    <Stack display={"flex"} flexDirection={"row"}>
-      <Sidebar />
-      <Outlet />
-    </Stack>
+    <>
+      <Header />
+      <Stack display={"flex"} flexDirection={"row"}>
+        {/* <Sidebar /> */}
+
+        <Outlet />
+      </Stack>
+    </>
   );
 };
 

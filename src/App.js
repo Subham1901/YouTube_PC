@@ -7,6 +7,7 @@ import "./components/Style.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import WatchPage from "./components/WatchPage";
 import MainContainer from "./components/MainContainer";
+import Feeds from "./components/Feeds";
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -20,13 +21,16 @@ const appRouter = createBrowserRouter([
         path: "/",
         element: <MainContainer />,
       },
+      {
+        path: "result",
+        element: <Feeds />,
+      },
     ],
   },
 ]);
 const App = () => {
   return (
     <Container maxW={"100%"}>
-      <Header />
       <RouterProvider router={appRouter} />
     </Container>
   );

@@ -11,12 +11,23 @@ import {
   Stack,
   Text,
   VStack,
+  useDisclosure,
+} from "@chakra-ui/react";
+import {
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { MdMenu } from "react-icons/md";
 import { AiOutlineSearch } from "react-icons/ai";
 import Logo from "../assets/YouTube-Logo.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import jsonpAdapter from "axios-jsonp";
 import {
   clearSeachSuggestion,
   setSeachSuggestion,
@@ -24,16 +35,27 @@ import {
 } from "../utils/appSlice";
 import axios from "axios";
 import SearchBox from "./SearchBox";
+import { setSearchCacheInfo } from "../utils/searchSlice";
+import Sidebar from "./Sidebar";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [searchQuery, setSearchQuery] = useState();
+  const [placement, setPlacement] = React.useState("left");
   const [showSuggestion, setShowSuggestion] = useState(false);
+
+  const cacheData = useSelector((state) => state.seacrhCache);
+  console.log(cacheData);
 
   useEffect(() => {
     let timer;
     if (searchQuery) {
-      timer = setTimeout(() => getSuggestions(), 300);
+      if (cacheData[searchQuery]) {
+        dispatch(setSeachSuggestion(cacheData[searchQuery][0]));
+      } else {
+        timer = setTimeout(() => getSuggestions(), 300);
+      }
     }
 
     return () => {
@@ -45,10 +67,27 @@ const Header = () => {
   // console.log(searchQuery);
 
   const getSuggestions = async () => {
-    const { data } = await axios.get(
-      `http://suggestqueries.google.com/complete/search?client=firefox&key=AIzaSyBrZ8OaRNaZHPxwK1NMmQGeI9tjeLwa15I&ds=yt&q=${searchQuery}`
-    );
-    dispatch(setSeachSuggestion(data[1]));
+    try {
+      const res = await axios({
+        url: "https://clients1.google.com/complete/search",
+        adapter: jsonpAdapter,
+        params: {
+          client: "firefox",
+          hl: "en",
+          ds: "yt",
+          q: searchQuery,
+        },
+      });
+
+      dispatch(setSeachSuggestion(res.data[1]));
+      dispatch(
+        setSearchCacheInfo({
+          [searchQuery]: [res.data[1]],
+        })
+      );
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   return (
@@ -70,6 +109,7 @@ const Header = () => {
     >
       <Box display={"flex"} alignItems={"center"} justifyContent={"flex-start"}>
         <Button
+          onClick={onOpen}
           borderRadius={"full"}
           css={{
             "&:hover": {
@@ -79,7 +119,7 @@ const Header = () => {
           width={12}
           height={12}
           p={3}
-          onClick={(e) => dispatch(toggleMenu())}
+          // onClick={(e) => dispatch(toggleMenu())}
           variant={"unstyled"}
         >
           <MdMenu size={25} />
@@ -93,7 +133,7 @@ const Header = () => {
           alt="YouTube"
           src={Logo}
         />
-        <VStack>
+        <VStack w={"md"}>
           <form>
             <InputGroup ml={"96"}>
               <Input
@@ -122,6 +162,7 @@ const Header = () => {
       <Box>
         <Avatar src="https://bit.ly/kent-c-dodds" size={"sm"} />
       </Box>
+      <Sidebar placement={placement} onClose={onClose} isOpen={isOpen} />
     </Box>
   );
 };

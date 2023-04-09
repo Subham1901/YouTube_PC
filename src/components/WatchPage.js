@@ -2,7 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeToggleMenu, toggleMenu } from "../utils/appSlice";
 import { useSearchParams } from "react-router-dom";
-import { AspectRatio, Box, Button, HStack, Text, Link } from "@chakra-ui/react";
+import {
+  AspectRatio,
+  Box,
+  Button,
+  HStack,
+  Text,
+  Link,
+  Stack,
+} from "@chakra-ui/react";
 import { BiLike } from "react-icons/bi";
 import axios from "axios";
 import millify from "millify";
@@ -30,7 +38,13 @@ const WatchPage = () => {
     getVideoInfo();
   }, []);
   return (
-    <Box mt={1} w={["sm", "sm", "md", "lg", "5xl"]}>
+    <Box
+      display={"flex"}
+      flexDirection={"column"}
+      justifyContent={"center"}
+      mt={1}
+      w={["500", "sm", "md", "lg", "5xl"]}
+    >
       <AspectRatio ratio={16 / 9}>
         <iframe
           width="1000"
@@ -43,7 +57,11 @@ const WatchPage = () => {
           allowFullScreen
         />
       </AspectRatio>
-      <HStack display={"flex"} justifyContent={"space-between"}>
+      <Stack
+        display={"flex"}
+        flexDirection={"row"}
+        justifyContent={"space-between"}
+      >
         <Box>
           <Text fontWeight={"bold"} mt={1} fontSize={"lg"}>
             {videoInfo?.snippet?.title}
@@ -60,12 +78,12 @@ const WatchPage = () => {
             {millify(videoInfo?.statistics?.likeCount)}
           </Button>
         </Box>
-      </HStack>
+      </Stack>
       <Box
         mb={5}
         borderRadius={"lg"}
         shadow={"md"}
-        w={["sm", "sm", "md", "lg", "5xl"]}
+        w={["500", "sm", "md", "lg", "5xl"]}
         p={5}
         backgroundColor={"#FAF9F6"}
         mt={5}

@@ -16,7 +16,7 @@ const SearchBox = ({ show }) => {
       {searchData.length != 0 && show && (
         <List
           top={10}
-          right={585}
+          right={["2xl", "lg", "807"]}
           position={"fixed"}
           bgColor={"white"}
           border={"1px solid #D3D3D3"}
@@ -26,8 +26,9 @@ const SearchBox = ({ show }) => {
           w={"md"}
           spacing={3}
         >
-          {searchData.map((data) => (
+          {searchData.map((data, idx) => (
             <ListItem
+              key={idx}
               fontWeight={"semibold"}
               p={1}
               css={{
