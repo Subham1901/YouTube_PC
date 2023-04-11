@@ -37,16 +37,16 @@ import axios from "axios";
 import SearchBox from "./SearchBox";
 import { setSearchCacheInfo } from "../utils/searchSlice";
 import Sidebar from "./Sidebar";
+import { searchAPI } from "../utils/Constants";
 
 const Header = () => {
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [searchQuery, setSearchQuery] = useState();
   const [placement, setPlacement] = React.useState("left");
-  const [showSuggestion, setShowSuggestion] = useState(false);
+  const [showSuggestion, setShowSuggestion] = useState(true);
 
   const cacheData = useSelector((state) => state.seacrhCache);
-  console.log(cacheData);
 
   useEffect(() => {
     let timer;
@@ -64,12 +64,10 @@ const Header = () => {
     };
   }, [searchQuery]);
 
-  // console.log(searchQuery);
-
   const getSuggestions = async () => {
     try {
       const res = await axios({
-        url: "https://clients1.google.com/complete/search",
+        url: searchAPI,
         adapter: jsonpAdapter,
         params: {
           client: "firefox",
@@ -137,8 +135,8 @@ const Header = () => {
           <form>
             <InputGroup ml={"96"}>
               <Input
-                onFocus={(e) => setShowSuggestion(true)}
-                onBlur={(e) => setShowSuggestion(false)}
+                // onFocus={(e) => setShowSuggestion(true)}
+                // onBlur={(e) => setShowSuggestion(false)}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 defaultValue={searchQuery}
                 name="search"
@@ -149,7 +147,6 @@ const Header = () => {
               <Button
                 type="submit"
                 cursor={"pointer"}
-                onClick={() => console.log("hello")}
                 borderRightRadius={"full"}
                 children={<AiOutlineSearch size={25} />}
               />

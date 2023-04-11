@@ -8,9 +8,14 @@ import {
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
 const SearchBox = ({ show }) => {
   const searchData = useSelector((data) => data.app.searchData);
+  const navigate = useNavigate();
+  const handleNavigate = (data) => {
+    navigate(`/result?q=${data}`);
+  };
   return (
     <>
       {searchData.length != 0 && show && (
@@ -28,9 +33,10 @@ const SearchBox = ({ show }) => {
         >
           {searchData.map((data, idx) => (
             <ListItem
-              key={idx}
+              onClick={() => handleNavigate(data)}
               fontWeight={"semibold"}
               p={1}
+              key={idx}
               css={{
                 "&:hover": {
                   backgroundColor: "#D3D3D3",

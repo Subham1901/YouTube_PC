@@ -1,8 +1,19 @@
-import { AspectRatio, Box } from "@chakra-ui/react";
+import {
+  AspectRatio,
+  Box,
+  Card,
+  CardBody,
+  Heading,
+  Img,
+  Text,
+} from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { API_KEY, seacrhKeywordAPI } from "../utils/Constants";
+import { GoPrimitiveDot } from "react-icons/go";
+import millify from "millify";
+import moment from "moment";
 
 const Feeds = () => {
   const [queryParams] = useSearchParams();
@@ -11,7 +22,7 @@ const Feeds = () => {
   console.log(queryParams.get("q"));
   useEffect(() => {
     getKeywordInfo();
-  }, []);
+  }, [queryParams.get("q")]);
 
   const getKeywordInfo = () => {
     try {
@@ -30,27 +41,53 @@ const Feeds = () => {
     }
   };
 
-  console.log(info);
+  console.log("info", info);
 
   return (
     <Box
       mt={8}
+      ml={12}
       display={"flex"}
       justifyContent={"center"}
       flexWrap={"wrap"}
-      flexDirection={["column", "column", "row"]}
+      flexDirection={["column"]}
     >
       {info.map((data) => (
-        <AspectRatio ratio={1}>
-          <iframe
-            width="1000"
-            height="515"
-            src={`https://www.youtube.com/embed/kPR7oIL-WF4?autoplay=1`}
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          />
-        </AspectRatio>
+        <Link key={data?.id?.videoId} to={`/watch?v=${data?.id?.videoId}`}>
+          <Card shadow={"none"}>
+            <CardBody
+              display={"flex"}
+              flexDirection={["column", "column", "row"]}
+            >
+              <Img src={data?.snippet?.thumbnails?.medium?.url} />
+              <Box ml={3}>
+                <Heading mt={2} fontSize={"md"} fontWeight={"bold"}>
+                  {data?.snippet?.title}
+                </Heading>
+
+                <Box mt={2} display={"flex"} alignItems={"center"}>
+                  <Text
+                    mr={2}
+                    color={"gray.600"}
+                    fontWeight={"semibold"}
+                    fontSize={14}
+                  >
+                    {data?.snippet?.channelTitle}
+                  </Text>
+                  <GoPrimitiveDot size={8} />
+                  <Text
+                    ml={2}
+                    fontSize={14}
+                    color={"#818589"}
+                    fontWeight={"semibold"}
+                  >
+                    {moment(data?.snippet?.publishedAt, "YYYYMMDD").fromNow()}
+                  </Text>
+                </Box>
+              </Box>
+            </CardBody>
+          </Card>
+        </Link>
       ))}
     </Box>
   );

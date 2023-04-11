@@ -97,101 +97,115 @@ const Sidebar = ({ placement, onClose, isOpen }) => {
             Subscriptions
           </Button>
           <Divider mt={2} />
-          <Button
-            w={"full"}
-            bgColor={"white"}
-            css={{
-              "&:hover": {
-                backgroundColor: "#D3D3D3",
-              },
-            }}
-          >
-            <Img
-              style={{ position: "absolute", left: 5 }}
-              objectFit={"cover"}
-              h={9}
-              src={trending}
-            />
-            Explore
-          </Button>
-          <Button
-            w={"full"}
-            bgColor={"white"}
-            css={{
-              "&:hover": {
-                backgroundColor: "#D3D3D3",
-              },
-            }}
-          >
-            <IoIosMusicalNote
-              size={25}
-              style={{ position: "absolute", left: 8 }}
-            />
-            Music
-          </Button>
-          <Button
-            w={"full"}
-            bgColor={"white"}
-            css={{
-              "&:hover": {
-                backgroundColor: "#D3D3D3",
-              },
-            }}
-          >
-            <MdMovie size={25} style={{ position: "absolute", left: 8 }} />
-            Movies
-          </Button>
-          <Button
-            w={"full"}
-            bgColor={"white"}
-            css={{
-              "&:hover": {
-                backgroundColor: "#D3D3D3",
-              },
-            }}
-          >
-            <SiYoutubegaming
-              size={25}
-              style={{ position: "absolute", left: 8 }}
-            />
-            Gaming
-          </Button>
-          <Button
-            w={"full"}
-            bgColor={"white"}
-            css={{
-              "&:hover": {
-                backgroundColor: "#D3D3D3",
-              },
-            }}
-          >
-            <BiNews size={25} style={{ position: "absolute", left: 8 }} />
-            News
-          </Button>
-          <Button
-            w={"full"}
-            bgColor={"white"}
-            css={{
-              "&:hover": {
-                backgroundColor: "#D3D3D3",
-              },
-            }}
-          >
-            <BsTrophy size={25} style={{ position: "absolute", left: 8 }} />
-            Sports
-          </Button>
-          <Button
-            w={"full"}
-            bgColor={"white"}
-            css={{
-              "&:hover": {
-                backgroundColor: "#D3D3D3",
-              },
-            }}
-          >
-            <BiBulb size={25} style={{ position: "absolute", left: 8 }} />
-            Learning
-          </Button>
+          <Link to={"/result?q=explore"}>
+            <Button
+              w={"full"}
+              bgColor={"white"}
+              css={{
+                "&:hover": {
+                  backgroundColor: "#D3D3D3",
+                },
+              }}
+            >
+              <Img
+                style={{ position: "absolute", left: 5 }}
+                objectFit={"cover"}
+                h={9}
+                src={trending}
+              />
+              Explore
+            </Button>
+          </Link>
+          <Link to={"/result?q=music"}>
+            <Button
+              w={"full"}
+              bgColor={"white"}
+              css={{
+                "&:hover": {
+                  backgroundColor: "#D3D3D3",
+                },
+              }}
+            >
+              <IoIosMusicalNote
+                size={25}
+                style={{ position: "absolute", left: 8 }}
+              />
+              Music
+            </Button>
+          </Link>
+          <Link to={"/result?q=movies"}>
+            <Button
+              w={"full"}
+              bgColor={"white"}
+              css={{
+                "&:hover": {
+                  backgroundColor: "#D3D3D3",
+                },
+              }}
+            >
+              <MdMovie size={25} style={{ position: "absolute", left: 8 }} />
+              Movies
+            </Button>
+          </Link>
+          <Link to={"/result?q=gaming"}>
+            <Button
+              w={"full"}
+              bgColor={"white"}
+              css={{
+                "&:hover": {
+                  backgroundColor: "#D3D3D3",
+                },
+              }}
+            >
+              <SiYoutubegaming
+                size={25}
+                style={{ position: "absolute", left: 8 }}
+              />
+              Gaming
+            </Button>
+          </Link>
+          <Link to={"/result?q=news"}>
+            <Button
+              w={"full"}
+              bgColor={"white"}
+              css={{
+                "&:hover": {
+                  backgroundColor: "#D3D3D3",
+                },
+              }}
+            >
+              <BiNews size={25} style={{ position: "absolute", left: 8 }} />
+              News
+            </Button>
+          </Link>
+          <Link to={"/result?q=sports"}>
+            <Button
+              w={"full"}
+              bgColor={"white"}
+              css={{
+                "&:hover": {
+                  backgroundColor: "#D3D3D3",
+                },
+              }}
+            >
+              <BsTrophy size={25} style={{ position: "absolute", left: 8 }} />
+              Sports
+            </Button>
+          </Link>
+          <Link to={"/result?q=learning"}>
+            <Button
+              w={"full"}
+              bgColor={"white"}
+              css={{
+                "&:hover": {
+                  backgroundColor: "#D3D3D3",
+                },
+              }}
+            >
+              <BiBulb size={25} style={{ position: "absolute", left: 8 }} />
+              Learning
+            </Button>
+          </Link>
         </DrawerBody>
       </DrawerContent>
     </Drawer>
