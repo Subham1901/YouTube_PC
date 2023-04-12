@@ -30,6 +30,7 @@ const Feeds = () => {
         .get(seacrhKeywordAPI, {
           params: {
             key: API_KEY,
+            regionCode: "IN",
             q: queryParams.get("q"),
           },
         })

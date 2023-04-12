@@ -1,16 +1,19 @@
-/* width */
 ::-webkit-scrollbar {
-  width: 6px;
+  background: transparent; /* make scrollbar transparent */
+  -webkit-appearance: none;
+  width: 0;
+  height: 0;
+}
+.buttonlist {
+  scroll-behavior: smooth;
 }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: rgb(230, 230, 230);
-  border-radius: 10px;
-  height: 6px;
+.lists:last-child {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #969696;
+.lists:first-child {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }

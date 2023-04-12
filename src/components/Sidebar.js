@@ -45,6 +45,7 @@ const Sidebar = ({ placement, onClose, isOpen }) => {
         <DrawerBody>
           <Link to={"/"}>
             <Button
+              onClick={onClose}
               mt={2}
               w={"full"}
               bgColor={"white"}
@@ -64,6 +65,7 @@ const Sidebar = ({ placement, onClose, isOpen }) => {
 
           <Link to={"/result?q=shorts"}>
             <Button
+              onClick={onClose}
               w={"full"}
               bgColor={"white"}
               css={{
@@ -82,6 +84,7 @@ const Sidebar = ({ placement, onClose, isOpen }) => {
             </Button>
           </Link>
           <Button
+            onClick={onClose}
             w={"full"}
             bgColor={"white"}
             css={{
@@ -99,6 +102,7 @@ const Sidebar = ({ placement, onClose, isOpen }) => {
           <Divider mt={2} />
           <Link to={"/result?q=explore"}>
             <Button
+              onClick={onClose}
               w={"full"}
               bgColor={"white"}
               css={{
@@ -118,6 +122,7 @@ const Sidebar = ({ placement, onClose, isOpen }) => {
           </Link>
           <Link to={"/result?q=music"}>
             <Button
+              onClick={onClose}
               w={"full"}
               bgColor={"white"}
               css={{
@@ -135,6 +140,7 @@ const Sidebar = ({ placement, onClose, isOpen }) => {
           </Link>
           <Link to={"/result?q=movies"}>
             <Button
+              onClick={onClose}
               w={"full"}
               bgColor={"white"}
               css={{
@@ -149,6 +155,7 @@ const Sidebar = ({ placement, onClose, isOpen }) => {
           </Link>
           <Link to={"/result?q=gaming"}>
             <Button
+              onClick={onClose}
               w={"full"}
               bgColor={"white"}
               css={{
@@ -166,6 +173,7 @@ const Sidebar = ({ placement, onClose, isOpen }) => {
           </Link>
           <Link to={"/result?q=news"}>
             <Button
+              onClick={onClose}
               w={"full"}
               bgColor={"white"}
               css={{
@@ -180,6 +188,7 @@ const Sidebar = ({ placement, onClose, isOpen }) => {
           </Link>
           <Link to={"/result?q=sports"}>
             <Button
+              onClick={onClose}
               w={"full"}
               bgColor={"white"}
               css={{
@@ -194,6 +203,7 @@ const Sidebar = ({ placement, onClose, isOpen }) => {
           </Link>
           <Link to={"/result?q=learning"}>
             <Button
+              onClick={onClose}
               w={"full"}
               bgColor={"white"}
               css={{

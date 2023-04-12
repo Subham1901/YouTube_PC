@@ -1,26 +1,11 @@
 import {
-  Avatar,
   Box,
   Button,
-  Container,
-  HStack,
   Img,
   Input,
   InputGroup,
-  InputRightAddon,
-  Stack,
-  Text,
   VStack,
   useDisclosure,
-} from "@chakra-ui/react";
-import {
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { MdMenu } from "react-icons/md";
@@ -44,7 +29,7 @@ const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [searchQuery, setSearchQuery] = useState();
   const [placement, setPlacement] = React.useState("left");
-  const [showSuggestion, setShowSuggestion] = useState(true);
+  const [showSuggestion, setShowSuggestion] = useState(false);
 
   const cacheData = useSelector((state) => state.seacrhCache);
 
@@ -90,7 +75,6 @@ const Header = () => {
 
   return (
     <Box
-      as="header"
       position="fixed"
       zIndex={"dropdown"}
       backgroundColor="white"
@@ -103,44 +87,62 @@ const Header = () => {
       display={"flex"}
       alignItems={"center"}
       justifyContent={"space-between"}
-      flexDirection={"row"}
+      flexDirection={["column", "column", "column", "row"]}
     >
-      <Box display={"flex"} alignItems={"center"} justifyContent={"flex-start"}>
-        <Button
-          onClick={onOpen}
-          borderRadius={"full"}
-          css={{
-            "&:hover": {
-              backgroundColor: "#D3D3D3",
-            },
-          }}
-          width={12}
-          height={12}
-          p={3}
-          // onClick={(e) => dispatch(toggleMenu())}
-          variant={"unstyled"}
+      <Box
+        display={"flex"}
+        flexDirection={["column", "column", "column", "row"]}
+        alignItems={"center"}
+        justifyContent={"flex-start"}
+      >
+        <Box
+          p={2}
+          w={"xs"}
+          alignItems={"center"}
+          justifyContent={[
+            "space-between",
+            "space-between",
+            "space-between",
+            "flex-start",
+          ]}
+          display={"flex"}
         >
-          <MdMenu size={25} />
-        </Button>
+          <Button
+            onClick={onOpen}
+            borderRadius={"full"}
+            css={{
+              "&:hover": {
+                backgroundColor: "#D3D3D3",
+              },
+            }}
+            width={12}
+            height={12}
+            p={3}
+            // onClick={(e) => dispatch(toggleMenu())}
+            variant={"unstyled"}
+          >
+            <MdMenu size={25} />
+          </Button>
 
-        <Img
-          cursor={"pointer"}
-          ml={6}
-          objectFit={"cover"}
-          w={100}
-          alt="YouTube"
-          src={Logo}
-        />
-        <VStack w={"md"}>
+          <Img
+            cursor={"pointer"}
+            ml={6}
+            objectFit={"cover"}
+            w={100}
+            alt="YouTube"
+            src={Logo}
+          />
+        </Box>
+        <VStack p={2} w={"md"}>
           <form>
-            <InputGroup ml={"96"}>
+            <InputGroup ml={[0, 96]}>
               <Input
-                // onFocus={(e) => setShowSuggestion(true)}
-                // onBlur={(e) => setShowSuggestion(false)}
+                onFocus={(e) => setShowSuggestion(true)}
+                onBlur={(e) => setShowSuggestion(false)}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 defaultValue={searchQuery}
                 name="search"
-                w={"md"}
+                w={["72", "sm"]}
                 borderLeftRadius={"full"}
                 placeholder="Search"
               />
@@ -156,9 +158,6 @@ const Header = () => {
         </VStack>
       </Box>
 
-      <Box>
-        <Avatar src="https://bit.ly/kent-c-dodds" size={"sm"} />
-      </Box>
       <Sidebar placement={placement} onClose={onClose} isOpen={isOpen} />
     </Box>
   );
