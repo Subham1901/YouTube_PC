@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import ButtonList from "./ButtonList";
 import VideoList from "./VideoList";
 import { VStack } from "@chakra-ui/react";
 
 const MainContainer = () => {
+  const [videoCategory, setVideoCategory] = useState();
+
+  const setCat = (value) => {
+    console.log(value);
+    setVideoCategory(value);
+  };
+
   return (
     <VStack>
-      <ButtonList />
+      <ButtonList setCategory={setCat} />
 
-      <VideoList />
+      <VideoList videoCategory={videoCategory} />
     </VStack>
   );
 };

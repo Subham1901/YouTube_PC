@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { API } from "../utils/Constants";
+import { API, API_KEY } from "../utils/Constants";
 import {
   Box,
   Card,
@@ -14,18 +14,29 @@ import moment from "moment/moment";
 import millify from "millify";
 import { GoPrimitiveDot } from "react-icons/go";
 import { Link } from "react-router-dom";
-const VideoList = () => {
+const VideoList = ({ videoCategory }) => {
   const [videos, setVideos] = useState([]);
 
   const getVideoAPI = async () => {
-    const { data } = await axios.get(API);
-
-    setVideos(data.items);
+    await axios
+      .get("https://youtube.googleapis.com/youtube/v3/videos", {
+        params: {
+          part: "snippet,contentDetails,statistics",
+          chart: "mostPopular",
+          regionCode: "IN",
+          maxResults: "50",
+          videoCategoryId: videoCategory,
+          key: API_KEY,
+        },
+      })
+      .then((res) => {
+        setVideos(res.data.items);
+      });
   };
   console.log(videos);
   useEffect(() => {
     getVideoAPI();
-  }, []);
+  }, [videoCategory]);
 
   const videoInfo = videos.map((data) => {
     return { ...data, publishedAt: moment().format(data?.publishedAt) };
@@ -45,8 +56,12 @@ const VideoList = () => {
     >
       {videoInfo &&
         videoInfo.map((data) => (
-          <Link key={data?.id} to={`/watch?v=${data?.id}`}>
-            <Card cursor={"pointer"} shadow={"none"} maxW={400} m={2}>
+          <Link
+            style={{ margin: "9px" }}
+            key={data?.id}
+            to={`/watch?v=${data?.id}`}
+          >
+            <Card cursor={"pointer"} shadow={"none"} maxW={400}>
               <CardBody>
                 <Img
                   w={400}

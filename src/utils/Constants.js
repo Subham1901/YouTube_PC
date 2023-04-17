@@ -28,4 +28,4 @@ export const seacrhKeywordAPI =
   "https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=30&regionCode=IN";
 
 export const videoCatgories =
-  "https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=IN&key=AIzaSyBrZ8OaRNaZHPxwK1NMmQGeI9tjeLwa15I";
+  "https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&key=AIzaSyBrZ8OaRNaZHPxwK1NMmQGeI9tjeLwa15I";

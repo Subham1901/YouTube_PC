@@ -4,16 +4,23 @@ import { lists, videoCatgories } from "../utils/Constants";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import axios from "axios";
 
-const ButtonList = () => {
+const ButtonList = (props) => {
   const [catgories, setCatgories] = useState([]);
   const buttonRef = useRef();
   const scroll = (Offset) => {
     buttonRef.current.scrollLeft += Offset;
   };
-
+  const handleClick = (id) => {
+    props.setCategory(id);
+  };
   const getVideoCatgories = async () => {
-    const { data } = await axios.get(videoCatgories);
-    setCatgories(data.items);
+    const { data } = await axios.get(
+      "https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=IN&key=AIzaSyBrZ8OaRNaZHPxwK1NMmQGeI9tjeLwa15I"
+    );
+
+    setCatgories(
+      data?.items.filter((data) => data?.snippet?.assignable === true)
+    );
   };
 
   useEffect(() => {
@@ -39,7 +46,7 @@ const ButtonList = () => {
         <IoIosArrowBack size={20} />
       </Button>
       <HStack
-        maxWidth={["12rem", "25rem", "30rem", "50rem", "75rem"]}
+        maxWidth={["12rem", "20rem", "25rem", "30rem", "50rem", "75rem"]}
         className="buttonlist"
         ref={buttonRef}
         display={"flex"}
@@ -49,6 +56,7 @@ const ButtonList = () => {
       >
         {catgories.map((data) => (
           <Text
+            onClick={(e) => handleClick(data?.id)}
             bgColor={"rgb(250, 249, 246)"}
             cursor={"pointer"}
             fontWeight={"medium"}

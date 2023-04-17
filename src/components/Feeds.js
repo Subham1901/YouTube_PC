@@ -47,7 +47,7 @@ const Feeds = () => {
   return (
     <Box
       mt={8}
-      ml={12}
+      ml={[0, 0, 4, 5, 12]}
       display={"flex"}
       justifyContent={"center"}
       flexWrap={"wrap"}
@@ -85,6 +85,14 @@ const Feeds = () => {
                     {moment(data?.snippet?.publishedAt, "YYYYMMDD").fromNow()}
                   </Text>
                 </Box>
+                <Text
+                  color={"#818589"}
+                  fontWeight={"normal"}
+                  mt={2}
+                  fontSize={"sm"}
+                >
+                  {data?.snippet?.description}
+                </Text>
               </Box>
             </CardBody>
           </Card>

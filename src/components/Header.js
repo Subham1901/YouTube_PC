@@ -135,7 +135,7 @@ const Header = () => {
         </Box>
         <VStack p={2} w={"md"}>
           <form>
-            <InputGroup ml={[0, 96]}>
+            <InputGroup ml={[0, 0, 0, "55%"]}>
               <Input
                 onFocus={(e) => setShowSuggestion(true)}
                 onBlur={(e) => setShowSuggestion(false)}

@@ -21,8 +21,9 @@ const SearchBox = ({ show }) => {
     <>
       {searchData.length != 0 && show && (
         <List
-          top={["115", "50"]}
-          right={["2xl", "lg", "650"]}
+          top={["20%", "15%", "15%", "7%"]}
+          left={"50%"}
+          transform={"translate(-50%, 0)"}
           position={"fixed"}
           bgColor={"white"}
           border={"1px solid #D3D3D3"}
