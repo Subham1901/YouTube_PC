@@ -68,7 +68,7 @@ const ButtonList = (props) => {
               },
             }}
             m={"1rem !important"}
-            key={data.id}
+            key={data.id} 
             display={"inline-block"}
           >
             {data?.snippet?.title}

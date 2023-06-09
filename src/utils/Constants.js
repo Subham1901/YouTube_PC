@@ -22,7 +22,7 @@ export const API =
 export const commentAPI =
   "https://www.googleapis.com/youtube/v3/commentThreads?key=AIzaSyBrZ8OaRNaZHPxwK1NMmQGeI9tjeLwa15I&textFormat=plainText&part=snippet&videoId=Mhkb8EbZaf0&maxResults=100";
 
-export const searchAPI = "http://suggestqueries.google.com/complete/search";
+export const searchAPI = "https://suggestqueries.google.com/complete/search";
 
 export const seacrhKeywordAPI =
   "https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=30&regionCode=IN";
